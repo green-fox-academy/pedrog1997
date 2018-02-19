@@ -10,19 +10,21 @@ namespace Printer
             //   which prints the input String parameters
             // - It can have any number of parameters
 
-            Console.WriteLine("What is your name?");
-            string name = Console.ReadLine();
-            Console.WriteLine("How old are you?");
-            string age = Console.ReadLine();
 
-            Printer(name, age);
+            Printer("first");
+            Printer("first", "second");
+            Printer("first", "second", "third", "fourh");
 
             Console.ReadLine();
         }
 
-        static void Printer(string name, string age)
+        public static void Printer(params string[] messages)
         {
-            Console.WriteLine("you are " + name + " and you are " + age + " years old");
+            for (int i = 0; i < messages.Length; i++)
+            {
+                Console.Write(messages[i] + " ");
+            }
+            Console.WriteLine();
         }
     }
 }
