@@ -6,3 +6,5 @@ git-lesson-repository:
 https://github.com/pedrog1997/git-lesson-repository
 
 Website: https://pedrog1997.github.io/
+
+https://github.com/greenfox-academy/pebble-syllabus  "Pebble-Syllabus"
