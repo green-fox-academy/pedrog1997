@@ -14,7 +14,7 @@ namespace LinePlay
         {
             InitializeComponent();
 
-            int numberOfLines = 20;
+            int numberOfLines = 100;
             double spaceBetweenLines = (canvas.Height-40) / numberOfLines;
             double x1 = 20;
             double y1 = 20;

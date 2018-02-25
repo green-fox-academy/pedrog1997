@@ -14,7 +14,7 @@ namespace LinePlayQuarters
         public MainWindow()
         {
             InitializeComponent();
-            int numberOfSquares = 4;
+            int numberOfSquares = 1;
 
             double numberOfLines = 15;
             double spaceBetweenLines = (canvas.Width / ((numberOfSquares / 2) * numberOfLines + 1));
