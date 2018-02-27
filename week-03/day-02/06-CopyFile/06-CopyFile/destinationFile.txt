@@ -1,0 +1,6 @@
+The program should copy this file.
+With all the lines and everything.
+It will copy this file to another one,
+called destinationFile.
+If you are reading this now from the destination file
+it means that the program was succesful.
