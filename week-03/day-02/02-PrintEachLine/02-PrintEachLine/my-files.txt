@@ -1,0 +1,3 @@
+This is a super cool text editor.
+This is the second line.
+And this should be the third.
