@@ -8,12 +8,12 @@ namespace _09_Doubled
         static void Main(string[] args)
         {
             string fileName = "duplicated-chars.txt";
-            Console.WriteLine(Decryption(fileName));
+            Decryption(fileName);
 
             Console.Read();
         }
 
-        static string Decryption(string fileName)
+        static void Decryption(string fileName)
         {
             string[] linesOfFile = File.ReadAllLines(fileName);
 
@@ -28,12 +28,15 @@ namespace _09_Doubled
                     }
                 }
             }
-            string decrypted = "";
+
+            File.WriteAllLines("decrypted.txt", linesOfFile);
+
+            /*string decrypted = "";
             for (int i = 0; i < linesOfFile.Length; i++)
             {
                 decrypted += linesOfFile[i] + "\n";
             }
-            return decrypted;
+            return decrypted;*/
         }
     }
 }
