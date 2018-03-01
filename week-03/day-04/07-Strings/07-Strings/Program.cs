@@ -31,11 +31,11 @@ namespace _07_Strings
             {
                 if (word[0] == 'x')
                 {
-                    return word = "y" + ConvertXToY(word.Substring(1));
+                    return "y" + ConvertXToY(word.Substring(1));
                 }
                 else
                 {
-                    return word = word[0] + ConvertXToY(word.Substring(1));
+                    return word[0] + ConvertXToY(word.Substring(1));
                 }
             }
         }
