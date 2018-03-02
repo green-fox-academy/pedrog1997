@@ -24,7 +24,7 @@ namespace _12_Boxinception
         public MainWindow()
         {
             InitializeComponent();
-            Boxinception(6, new Point(100, 100), 500, canvas);
+            Boxinception(6, new Point(250, 100), 500, canvas);
         }
 
         static void Boxinception(int level, Point boxOrigin, double size, Canvas canvas)
