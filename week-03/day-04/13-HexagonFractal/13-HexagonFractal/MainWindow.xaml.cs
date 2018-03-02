@@ -14,7 +14,7 @@ namespace _13_HexagonFractal
         public MainWindow()
         {
             InitializeComponent();
-            CreateHexagon(5, new Point(100, 350), 250, canvas);
+            CreateHexagon(10, new Point(100, 350), 250, canvas);
         }
 
         static void CreateHexagon(int levelOfAbstraction, Point hexagonOrigin, double size, Canvas canvas)
