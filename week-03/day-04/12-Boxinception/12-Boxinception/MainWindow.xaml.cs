@@ -29,11 +29,6 @@ namespace _12_Boxinception
 
         static void Boxinception(int level, Point boxOrigin, double size, Canvas canvas)
         {
-            CreateBox(level, boxOrigin, size, canvas);
-        }
-
-        static void CreateBox(int level, Point boxOrigin, double size, Canvas canvas)
-        {
             var box = new Rectangle()
             {
                 Stroke = Brushes.Black,
