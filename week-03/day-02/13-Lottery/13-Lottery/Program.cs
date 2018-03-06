@@ -8,7 +8,16 @@ namespace _13_Lottery
     {
         static void Main(string[] args)
         {
-            Lottery("lottery.txt");
+            string[,] lotteryData = Get5Values("lottery.txt");
+            Dictionary<int, int> winningNumbers = CountOcurrences(lotteryData);
+            List<int> highest5 = HighestFive(winningNumbers);
+
+            Console.WriteLine("The most common numbers in lottery are:");
+            foreach (var number in highest5)
+            {
+                Console.WriteLine(number);
+            }
+
             Console.Read();
         }
 
@@ -32,36 +41,50 @@ namespace _13_Lottery
             return lotteryData;
         }
 
-        static Dictionary<string, int> CountOcurrences(string[,] lotteryData)
+        static Dictionary<int, int> CountOcurrences(string[,] lotteryData)
         {
-            Dictionary<string, int> winningNumbers = new Dictionary<string, int>();
+            Dictionary<int, int> winningNumbers = new Dictionary<int, int>();
 
             for (int i = 0; i < lotteryData.GetLength(0); i++)
             {
                 for (int j = 0; j < 5; j++)
                 {
-                    if (winningNumbers.ContainsKey(lotteryData[i, j]))
+                    if (winningNumbers.ContainsKey(Convert.ToInt32(lotteryData[i, j])))
                     {
-                        winningNumbers[lotteryData[i, j]] += 1;
+                        winningNumbers[Convert.ToInt32(lotteryData[i, j])] += 1;
                     }
                     else
                     {
-                        winningNumbers.Add(lotteryData[i, j], 1);
+                        winningNumbers.Add(Convert.ToInt32(lotteryData[i, j]), 1);
                     }
                 }
             }
             return winningNumbers;
         }
 
-        static void GreatestFive(Dictionary<string, int> winningNumbers)
+        static List<int> HighestFive(Dictionary<int, int> winningNumbers)
         {
-            for (int i = 0; i < 5; i++)
-            {
-                for (int j = 0; j < winningNumbers.Count; j++)
-                {
+            int actualHighest = 1;
+            List<int> highest5 = new List<int>();
 
+            for (int j = 0; j < 5; j++)
+            {
+                for (int i = 1; i < 90; i++)
+                {
+                    if (!highest5.Contains(i))
+                    {
+                        if (winningNumbers[actualHighest] < winningNumbers[i])
+                        {
+                            actualHighest = i;
+                        }
+                    }
                 }
+
+                highest5.Add(actualHighest);
+                actualHighest = 1;
             }
+
+            return highest5;
         }
     }
 }
