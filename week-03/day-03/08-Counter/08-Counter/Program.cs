@@ -6,11 +6,7 @@ namespace _08_Counter
     {
         static void Main(string[] args)
         {
-            var counter = new Counter(5);
 
-            Console.WriteLine(counter.Integer);
-
-            Console.Read();
         }
     }
 }

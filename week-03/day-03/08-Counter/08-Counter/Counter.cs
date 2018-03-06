@@ -6,26 +6,37 @@ namespace _08_Counter
 {
     class Counter
     {
-        private int _integer = 0;
+        private int integer = 0;
+        private int initialValue = 0;
 
-        public int Integer
+        public Counter()
         {
-            get
-            {
-                return _integer;
-            }
-            set
-            {
-                value = _integer;
-            }
         }
 
-        public Counter() { }
-
-        public Counter (int integer)
+        public Counter(int integer)
         {
-            _integer = integer;
+            this.integer = integer;
+            initialValue = integer;
         }
 
+        public void Add(int number)
+        {
+            integer += number;
+        }
+
+        public void Add()
+        {
+            integer++;
+        }
+
+        public string Get()
+        {
+            return integer.ToString();
+        }
+
+        public void Reset()
+        {
+            integer = initialValue;
+        }
     }
 }
