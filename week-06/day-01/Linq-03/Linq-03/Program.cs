@@ -10,8 +10,8 @@ namespace Linq_03
             int[] n = { 1, 3, -2, -4, -7, -3, -8, 12, 19, 6, 9, 10, 14 };
 
             var squarredPositivesQuery = from x in n
-                                    where x > 0
-                                    select x * x;
+                                         where x > 0
+                                         select x * x;
 
             var squarredPositivesMethod = n.Where(x => x > 0).Select(x => x * x);
 
@@ -30,3 +30,4 @@ namespace Linq_03
         }
     }
 }
+
