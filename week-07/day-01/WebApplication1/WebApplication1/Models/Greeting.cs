@@ -7,7 +7,19 @@ namespace WebApplication1.Models
 {
     public class Greeting
     {
+        static private int counter = 0;
+
         public long Id { get; set; }
         public string Content { get; set; }
+
+        public Greeting()
+        {
+        }
+
+        public Greeting(string content)
+        {
+            Content = content;
+            Id = ++counter;
+        }
     }
 }

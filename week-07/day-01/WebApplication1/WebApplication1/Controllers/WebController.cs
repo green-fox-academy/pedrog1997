@@ -7,23 +7,18 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    [Route("api")]
-    public class RESTController : Controller
+    [Route("web")]
+    public class WebController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        [Route("Greeting")]
+        [Route("greeting")]
         public IActionResult Greeting(string name)
         {
             var greeting = new Greeting(name)
             {
-                Content = $"Hello {name}!"
+                Content = $"{name}"
             };
 
-            return new JsonResult(greeting);
+            return View(greeting);
         }
     }
 }
