@@ -10,29 +10,38 @@ namespace BankOfSimba.Controllers
     [Route("")]
     public class SimbaController : Controller
     {
+        static List<BankAccount> bankAccounts = new List<BankAccount>
+        {
+            new BankAccount("Simba", 2000, "Animal.Lion"),
+            new BankAccount("Timon", 150, "Animal.Zuricata"),
+            new BankAccount("Pumba", 150, "Animal.RedPig"),
+            new BankAccount("Nala", 2000, "Animal.Lioness"),
+            new BankAccount("Scar", 0, "Animal.EvilLion"),
+            new BankAccount("Pedro", 1000, "Animal.Human")
+        };
+
         [Route("simba")]
         public IActionResult Simba()
         {
-            var bankAccountSimba = new BankAccount("Simba", 2000, "Animal.Lion");
-
-            return View(bankAccountSimba);
+            return View(bankAccounts[0]);
         }
 
         [Route("bankAccounts")]
         public IActionResult BankAccounts()
         {
-            var bankAccount = new List<BankAccount>
-            {
-                new BankAccount("Simba", 2000, "Animal.Lion"),
-                new BankAccount("Timon", 150, "Animal.Zuricata"),
-                new BankAccount("Pumba", 150, "Animal.RedPig"),
-                new BankAccount("Nala", 2000, "Animal.Lioness"),
-                new BankAccount("Scar", 0, "Animal.EvilLion")
-            };
-            bankAccount[0].MakeKing();
-            bankAccount[4].MakeBad();
+            
+            bankAccounts[0].MakeKing();
+            bankAccounts[4].MakeBad();
 
-            return View(bankAccount);
+            return View(bankAccounts);
+        }
+
+        [Route("raiseCurrency")]
+        [HttpPost]
+        public IActionResult RaiseCurrency(int index)
+        {
+            bankAccounts[index].RaiseBalance();
+            return View("bankAccounts", bankAccounts);
         }
     }
 }

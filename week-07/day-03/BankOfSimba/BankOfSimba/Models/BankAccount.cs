@@ -38,5 +38,10 @@ namespace BankOfSimba.Models
         {
             IsGood = false;
         }
+
+        public void RaiseBalance()
+        {
+            Balance += IsKing ? 100 : 10;
+        }
     }
 }
