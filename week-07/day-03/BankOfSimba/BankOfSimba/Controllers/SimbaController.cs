@@ -7,19 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BankOfSimba.Controllers
 {
-    public class HomeController : Controller
+    [Route("")]
+    public class SimbaController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [Route("simba")]
         public IActionResult Simba()
         {
-            var bankAccountSimba = new BankAccount("Simba", "2000", "Animal.Lion");
+            var bankAccountSimba = new BankAccount("Simba", 2000, "Animal.Lion");
 
-            return View();
+            return View(bankAccountSimba);
         }
     }
 }

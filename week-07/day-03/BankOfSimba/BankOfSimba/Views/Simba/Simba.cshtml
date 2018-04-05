@@ -1,0 +1,15 @@
+﻿@model BankOfSimba.Models.BankAccount
+
+<!DOCTYPE HTML>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <p>Name: @Model.Name</p><br />
+    <p>Balance: @Model.Balance.ToString("0.00") @Model.Currency</p><br />
+    <p>Animal Type: @Model.AnimalType </p>
+</body>
+</html>
