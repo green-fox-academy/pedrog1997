@@ -36,12 +36,27 @@ namespace BankOfSimba.Controllers
             return View(bankAccounts);
         }
 
-        [Route("raiseCurrency")]
         [HttpPost]
+        [Route("raiseCurrency")]
         public IActionResult RaiseCurrency(int index)
         {
             bankAccounts[index].RaiseBalance();
             return View("bankAccounts", bankAccounts);
+        }
+
+        [HttpGet]
+        [Route("addAnimal")]
+        public IActionResult AddAnimal()
+        {
+            return View("AddAnimal");
+        }
+
+        [HttpPost]
+        [Route("addAnimal")]
+        public IActionResult AddAnimal(string name, double balance, string animalType)
+        {
+            bankAccounts.Add(new BankAccount(name, balance, animalType));
+            return RedirectToAction("bankAccounts", bankAccounts);
         }
     }
 }
