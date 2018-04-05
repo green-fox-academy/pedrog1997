@@ -29,6 +29,8 @@ namespace BankOfSimba.Controllers
                 new BankAccount("Nala", 2000, "Animal.Lioness"),
                 new BankAccount("Scar", 0, "Animal.EvilLion")
             };
+            bankAccount[0].MakeKing();
+            bankAccount[4].MakeBad();
 
             return View(bankAccount);
         }

@@ -8,6 +8,8 @@
             <th>Index</th>
             <th>Name</th>
             <th>AnimalType</th>
+            <th>King</th>
+            <th>GoodGuy</th>
             <th>Balance</th>
             <th>Currency</th>
         </tr>
@@ -17,6 +19,26 @@
                 <td>@i</td>
                 <td>@Model[i].Name</td>
                 <td>@Model[i].AnimalType</td>
+                <td>
+                    @if (Model[i].IsKing)
+                    {
+                        <p>Yes</p>
+                    }
+                    else
+                    {
+                        <p>No</p>
+                    }
+                </td>
+                <td>
+                    @if (Model[i].IsGood)
+                    {
+                        <p>Yes</p>
+                    }
+                    else
+                    {
+                        <p>No</p>
+                    }
+                </td>
                 <td>@Model[i].Balance.ToString("0.00")</td>
                 <td>@Model[i].Currency</td>
             </tr>

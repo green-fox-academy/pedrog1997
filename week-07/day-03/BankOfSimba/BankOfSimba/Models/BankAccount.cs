@@ -10,6 +10,8 @@ namespace BankOfSimba.Models
         public string Name { get; set; }
         public double Balance { get; set; }
         public string AnimalType { get; set; }
+        public bool IsKing { get; set; }
+        public bool IsGood { get; set; }
         public string Currency
         {
             get
@@ -20,9 +22,21 @@ namespace BankOfSimba.Models
 
         public BankAccount(string name, double balance, string animalType)
         {
+            IsKing = false;
+            IsGood = true;
             Name = name;
             Balance = balance;
             AnimalType = animalType;
+        }
+
+        public void MakeKing()
+        {
+            IsKing = true;
+        }
+
+        public void MakeBad()
+        {
+            IsGood = false;
         }
     }
 }
