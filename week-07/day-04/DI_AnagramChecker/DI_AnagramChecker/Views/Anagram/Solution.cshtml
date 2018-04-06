@@ -1,0 +1,17 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <p>
+        @if (Model.IsAnagram())
+        {
+            <p>The words "@Model.Word1" and "@Model.Word2" are Anagrams!</p>
+        }
+        else
+        {
+            <p>The words "@Model.Word1" and "@Model.Word2" are not Anagrams!</p>
+        }
+    </p>
+</body>
+</html>
