@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ListToDos.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ListToDos
@@ -16,6 +18,10 @@ namespace ListToDos
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<TodoContext>(options =>
+            options.UseSqlServer(@"Data Source = (localdb)\ProjectsV13; Initial Catalog = Todos; Integrated Security = True;"));
+            services.AddScoped<DbContext, TodoContext>();
+            services.AddScoped<Repository, Repository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
