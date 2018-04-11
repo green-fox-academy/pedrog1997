@@ -56,5 +56,16 @@ namespace ListToDos.Models
                 _isDone = value;
             }
         }
+
+        public Todo() { }
+        public Todo(string title)
+        {
+            _title = title;
+        }
+        public Todo(string title, bool isUrgent)
+        {
+            _title = title;
+            _isUrgent = isUrgent;
+        }
     }
 }

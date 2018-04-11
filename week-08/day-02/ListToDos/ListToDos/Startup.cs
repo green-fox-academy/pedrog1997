@@ -18,10 +18,9 @@ namespace ListToDos
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<TodoContext>(options =>
-            options.UseSqlServer(@"Data Source = (localdb)\ProjectsV13; Initial Catalog = Todos; Integrated Security = True;"));
-            services.AddScoped<DbContext, TodoContext>();
-            services.AddScoped<Repository, Repository>();
+            var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+            services.AddDbContext<TodoContext>(options => options.UseSqlServer(connectionString));
+            services.AddScoped<IRepository, Repository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
