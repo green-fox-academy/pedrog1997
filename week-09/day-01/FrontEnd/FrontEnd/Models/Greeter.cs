@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace FrontEnd.Models
 {
-    public class Double
+    public class Greeter
     {
-        public int? Received { get; set; }
-        public int? Result { get; set; }
+        public string Name { get; set; }
+        public string Title { get; set; }
     }
 }

@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace FrontEnd.Models
 {
-    public class Double
+    public class ErrorDoubling
     {
-        public int? Received { get; set; }
-        public int? Result { get; set; }
+        public string Error { get; set; }
     }
 }

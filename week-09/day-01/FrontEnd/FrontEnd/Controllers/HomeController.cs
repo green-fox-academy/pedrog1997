@@ -17,14 +17,47 @@ namespace FrontEnd.Controllers
         }
 
         [HttpGet("/doubling")]
-        public IActionResult Doubling([FromQuery]int input)
+        public IActionResult Doubling([FromQuery]int? input)
         {
-            Models.Double doubling = new Models.Double
+            if (input == null)
             {
-                Received = input,
-                Result = input * 2
-            };
-            return Json(doubling);
+                var error = new ErrorDoubling()
+                {
+                    Error = "Please provide an input!"
+                };
+                return Json(error);
+            }
+            else
+            {
+                Models.Double doubling = new Models.Double
+                {
+                    Received = input,
+                    Result = input * 2
+                };
+                return Json(doubling);
+            }
+        }
+
+        [HttpGet("/Greeter")]
+        public IActionResult Greeter([FromQuery]string name, [FromQuery]string title)
+        {
+            if (name == null || title == null)
+            {
+                var error = new ErrorDoubling
+                {
+                    Error = "Please provide a name!"
+                };
+                return Json(error);
+            }
+            else
+            {
+                var greeter = new Greeter
+                {
+                    Name = name,
+                    Title = title
+                };
+                return Json(greeter);
+            }
         }
     }
 }
