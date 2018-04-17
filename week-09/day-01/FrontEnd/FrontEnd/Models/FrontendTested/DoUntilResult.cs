@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace FrontEnd.Models
 {
-    public class Greeter
+    public class DoUntilResult
     {
-        public string Name { get; set; }
-        public string Title { get; set; }
+        public int? Result { get; set; }
     }
 }
