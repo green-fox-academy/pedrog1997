@@ -5,12 +5,21 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FrontEnd.Models;
 using FrontEnd.Models.Arrayhandler;
+using FrontEnd.Models.LogEntries;
+using FrontEnd.Database;
 
 namespace FrontEnd.Controllers
 {
     [Route("")]
     public class HomeController : Controller
     {
+        private LogContext logDb;
+
+        public HomeController(LogContext logDb)
+        {
+            this.logDb = logDb;
+        }
+
         [Route("/")]    
         public IActionResult Index()
         {
@@ -20,6 +29,15 @@ namespace FrontEnd.Controllers
         [HttpGet("/doubling")]
         public IActionResult Doubling([FromQuery]int? input)
         {
+            var log = new Log
+            {
+                CreatedAt = DateTime.Now,
+                EndPoint = "/doubling",
+                Data = $"input={input}"
+            };
+            logDb.Logs.Add(log);
+            logDb.SaveChanges();
+
             if (input == null)
             {
                 var error = new ErrorDoubling()
@@ -42,6 +60,15 @@ namespace FrontEnd.Controllers
         [HttpGet("/Greeter")]
         public IActionResult Greeter([FromQuery]string name, [FromQuery]string title)
         {
+            var log = new Log
+            {
+                CreatedAt = DateTime.Now,
+                EndPoint = "/Greeter",
+                Data = $"name={name}&title={title}"
+            };
+            logDb.Logs.Add(log);
+            logDb.SaveChanges();
+
             if (name == null)
             {
                 var error = new ErrorDoubling
@@ -71,6 +98,15 @@ namespace FrontEnd.Controllers
         [HttpGet("/appenda/{appendable}")]
         public IActionResult AppendA(string appendable)
         {
+            var log = new Log
+            {
+                CreatedAt = DateTime.Now,
+                EndPoint = $"/appenda/{appendable}",
+                Data = $"appendable={appendable}"
+            };
+            logDb.Logs.Add(log);
+            logDb.SaveChanges();
+
             if (appendable == null)
             {
                 return NotFound();
@@ -88,6 +124,15 @@ namespace FrontEnd.Controllers
         [HttpPost("/dountil/{what}")]
         public IActionResult DoUntil(string what, [FromBody]DoUntilBody body)
         {
+            var log = new Log
+            {
+                CreatedAt = DateTime.Now,
+                EndPoint = $"/dountil/{what}",
+                Data = $"what={what}&until={body.Until}"
+            };
+            logDb.Logs.Add(log);
+            logDb.SaveChanges();
+
             if (what == "sum" && body.Until != null)
             {
                 int result = 0;
@@ -127,6 +172,15 @@ namespace FrontEnd.Controllers
         [HttpPost("/arrays")]
         public IActionResult Array([FromBody]Arrays array)
         {
+            var log = new Log
+            {
+                CreatedAt = DateTime.Now,
+                EndPoint = "/arrays",
+                Data = $"input={array.ToString()}"
+            };
+            logDb.Logs.Add(log);
+            logDb.SaveChanges();
+
             if (array.Numbers == null)
             {
                 return Json(new ErrorDoubling { Error = "Please provide what to do with the numbers!" });
@@ -165,6 +219,15 @@ namespace FrontEnd.Controllers
             return BadRequest();
             }
 
-
+        [HttpGet("/log")]
+        public IActionResult Log()
+        {
+            var response = new LogResponse
+            {
+                Logs = logDb.Logs.ToList(),
+                EntryCount = logDb.Logs.ToList().Count()
+            };
+            return Json(response);
+        }
     }
 }
