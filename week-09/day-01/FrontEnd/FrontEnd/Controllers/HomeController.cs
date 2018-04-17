@@ -7,6 +7,7 @@ using FrontEnd.Models;
 using FrontEnd.Models.Arrayhandler;
 using FrontEnd.Models.LogEntries;
 using FrontEnd.Database;
+using FrontEnd.Models.Sith;
 
 namespace FrontEnd.Controllers
 {
@@ -227,6 +228,77 @@ namespace FrontEnd.Controllers
                 Logs = logDb.Logs.ToList(),
                 EntryCount = logDb.Logs.ToList().Count()
             };
+            return Json(response);
+        }
+
+        [HttpPost("/sith")]
+        public IActionResult Sith([FromBody]SithRequest request)
+        {
+            var log = new Log
+            {
+                CreatedAt = DateTime.Now,
+                EndPoint = "/sith",
+                Data = $"text={request}"
+            };
+            logDb.Logs.Add(log);
+            logDb.SaveChanges();
+
+            //string[] sentences = request.Text.Split('.');
+            //string[][] words = new string[sentences.Length][];
+
+            //for (int i = 0; i < sentences.Length; i++)
+            //{
+            //    words[i] = sentences[i].Split(' ');
+            //}
+
+            //string[][] yodaWords = new string[sentences.Length][];
+
+            //for (int i = 0; i < sentences.Length; i++)
+            //{
+            //    for (int j = 0; j < words[i].Length; j++)
+            //    {
+            //        if (j % 2 == 0)
+            //        {
+            //            yodaWords[i][j] = (j + 1 >= words[i].Length) ? words[i][j] : words[i][j + 1];
+            //        }
+            //        else
+            //        {
+            //            yodaWords[i][j] = words[i][j - 1];
+            //        }
+            //    }
+            //}
+
+            //string[] yodaWordsJoined = new string[sentences.Length];
+            //for (int i = 0; i < yodaWordsJoined.Length; i++)
+            //{
+            //    yodaWordsJoined[i] = string.Join(' ', yodaWords[i]);
+            //}
+
+            //var response = new SithResponse
+            //{
+            //    Sith_text = string.Join('.', yodaWordsJoined)
+            //};
+
+            string[] words = request.Text.Split(' ');
+            string[] yodaWords = new string[words.Length];
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    yodaWords[i] = (i + 1 >= words.Length) ? words[i] : words[i + 1];
+                }
+                else
+                {
+                    yodaWords[i] = words[i - 1];
+                }
+            }
+
+            var response = new SithResponse
+            {
+                Sith_text = string.Join(' ', yodaWords)
+            };
+
             return Json(response);
         }
     }
