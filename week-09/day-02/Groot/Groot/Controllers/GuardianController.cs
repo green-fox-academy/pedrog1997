@@ -9,6 +9,12 @@ namespace Groot.Controllers
 {
     public class GuardianController : Controller
     {
+        [Route("/")]
+        public IActionResult Index()
+        {
+            return Ok();
+        }
+
         [HttpGet("/Groot")]
         public IActionResult Groot([FromQuery]string message)
         {
@@ -23,7 +29,7 @@ namespace Groot.Controllers
             }
             else
             {
-                var error = new Error()
+                var error = new ErrorMessage()
                 {
                     Error = "I am Groot!"
                 };

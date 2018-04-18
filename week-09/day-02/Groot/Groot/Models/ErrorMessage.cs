@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Groot.Models
 {
-    public class Error
+    public class ErrorMessage
     {
         public string Error { get; set; }
     }
