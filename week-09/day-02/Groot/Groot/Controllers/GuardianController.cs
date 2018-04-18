@@ -15,7 +15,7 @@ namespace Groot.Controllers
             return Ok();
         }
 
-        [HttpGet("/Groot")]
+        [HttpGet("/groot")]
         public IActionResult Groot([FromQuery]string message)
         {
             if (message != null)
@@ -24,8 +24,8 @@ namespace Groot.Controllers
                 {
                     Received = message,
                     Translated = "I am Groot!"
-                }; 
-            return Json(grootMessage);
+                };
+                return Json(grootMessage);
             }
             else
             {
@@ -33,7 +33,7 @@ namespace Groot.Controllers
                 {
                     Error = "I am Groot!"
                 };
-                return Json(error);
+                return BadRequest(error);
             }
         }
     }
