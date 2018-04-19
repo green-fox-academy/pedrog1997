@@ -1,21 +1,48 @@
-﻿<html xmlns="http://www.w3.org/1999/xhtml">
+﻿@model ExampleExam.ViewModel.PlanetsShip
+
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Space Transporter</title>
 </head>
 <body>
     <h1>Space Transporter</h1>
     <table>
-        <tr>
-            <td>Planet</td>
-            <td>Population</td>
-            <td>Spaceship</td>
-            <td>Location</td>
-            <td>People on ship</td>
-        </tr>
-        @foreach (var item in collection)
-        {
-
-        }
+        <thead>
+            <tr>
+                <td>Planet</td>
+                <td>Population</td>
+                <td>Spaceship Location</td>
+                <td>People on ship</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Planets.Count; i++)
+            {
+                <tr>
+                    <td>@Model.Planets[i].Name</td>
+                    <td>@Model.Planets[i].Population</td>
+                    @if (Model.Spaceship.Planet == Model.Planets[i].Name)
+                    {
+                        <td>
+                            <a href="/toplanet/@Model.Planets[i].Id">to planet</a>
+                            <a href="/toship/@Model.Planets[i].Id">to ship</a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td><a href="/movehere/@Model.Planets[i].Id">Move here</a></td>
+                    }
+                    @if (Model.Spaceship.Planet == Model.Planets[i].Name)
+                    {
+                        <td>@Model.Spaceship.Utilization</td>
+                    }
+                    else
+                    {
+                        <td>---</td>
+                    }
+                </tr>
+            }
+        </tbody>
     </table>
 </body>
 </html>
