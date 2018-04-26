@@ -1,0 +1,13 @@
+<p>
+  <strong>Project: </strong>
+  <%= @project.title %>
+</p>
+<p>
+  <%= image_tag @project.thumbnail %>
+</p>
+<p>
+  <strong>Description: </strong>
+  <%= @project.description %>
+</p>
+
+<%= link_to 'Back', projects_path %>
